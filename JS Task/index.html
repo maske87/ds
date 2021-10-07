@@ -1,0 +1,51 @@
+<script>
+    const bag = [
+        ['VAR', 'BOJ'],
+        ['SZR', 'HKV'],
+        ['PVN', 'VTT'],
+        ['RDU', 'SLS'],
+        ['PLD', 'SOF'],
+        ['VID', 'PVN'],
+        ['VTT', 'RDU'],
+        ['SLS', 'VAR'],
+        ['BOJ', 'SZR'],
+        ['HKV', 'PLD'],
+    ];
+
+    let trip=[];
+    let origins = [];
+    let destinations = [];
+
+    //Split the origins and the destinations
+    bag.forEach((ticket) => {
+        origins.push(ticket[0]);
+        destinations.push(ticket[1]);
+    });
+
+    //Find the first ticket
+    let firstTicket = bag.filter(oneTicket => !destinations.includes(oneTicket[0]))[0];
+
+    //Push empty trip array with first ticket origin and destination
+    trip.push(firstTicket[0]);
+    trip.push(firstTicket[1]);
+
+    //Set Current destination = first ticket destination
+    let curDestination = firstTicket[1];
+
+    //Loop based on current destination
+    function sortTrip(curDestination){
+        bag.forEach(function(item, index){
+            if(item[0] === curDestination){
+                //Puch each destination to the trip
+                trip.push(item[1]);
+                //run the loop
+                sortTrip(item[1]);
+            }
+        });
+    }
+
+    sortTrip(curDestination);
+
+    //Returnd Trip City List as an affay
+    alert(trip)
+</script>
