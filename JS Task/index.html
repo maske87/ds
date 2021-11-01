@@ -36,7 +36,7 @@
     function sortTrip(curDestination){
         bag.forEach(function(item, index){
             if(item[0] === curDestination){
-                //Puch each destination to the trip
+                //Push each destination to the trip
                 trip.push(item[1]);
                 //run the loop
                 sortTrip(item[1]);
